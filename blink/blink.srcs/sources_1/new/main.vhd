@@ -9,8 +9,7 @@ entity main is
 	      led : out STD_LOGIC);
 end main;
 
-architecture Behavioral of main is
-	signal count: STD_LOGIC_VECTOR(24 downto 0);
+architecture Behavioral of main is signal count: STD_LOGIC_VECTOR(24 downto 0);
 begin
 	process(clk)
 	begin
