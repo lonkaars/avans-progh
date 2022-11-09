@@ -2,6 +2,7 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 
+-- half adder entity
 entity half_add is
   port (
     A: in std_logic;
@@ -16,10 +17,13 @@ begin
   X <= (A XOR B);
 end Behavioral;
 
+
+
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 
+-- full adder entity
 entity add1b is
   port (
     A: in std_logic;
@@ -34,25 +38,31 @@ architecture Behavioral of add1b is
   signal s1: std_logic;
   signal s2: std_logic;
 begin
+	-- first add A and B with HA
   add0: entity work.half_add
     port map (
       A => A,
       B => B,
       X => s0,
       Cout => s1);
+	-- then add first result with Cin to get final result
   add1: entity work.half_add
     port map (
       A => Cin,
       B => s0,
       X => X,
       Cout => s2);
+	-- calculate Cout by OR-ing the Cout of both half adders
   Cout <= (s2 OR s1);
 end Behavioral;
+
+
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 USE ieee.numeric_std.ALL;
 
+-- full 4-bit adder entity
 entity add4b is
   port (
     A: in std_logic_vector(3 downto 0);
@@ -63,10 +73,11 @@ entity add4b is
 end add4b;
 
 architecture Behavioral of add4b is
-  signal C0: std_logic;
-  signal C1: std_logic;
-  signal C2: std_logic;
+  signal C0: std_logic; -- Cout0 -> Cin1
+  signal C1: std_logic; -- Cout1 -> Cin2
+  signal C2: std_logic; -- Cout2 -> Cin3
 begin
+	-- full adder ladder (e.g. Cin -> Cin0, Cout0 -> Cin1, ..., Cout3 -> Cout)
   add0: entity work.add1b
     port map (
       A => A(0),
