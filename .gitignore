@@ -1,3 +1,4 @@
+# subfolders
 */*.cache
 */*.hw
 */*.ioplanning
@@ -5,4 +6,8 @@
 */*.runs
 */*.sim
 
+# blob
 **/*.dcp
+
+# other
+copyright/
