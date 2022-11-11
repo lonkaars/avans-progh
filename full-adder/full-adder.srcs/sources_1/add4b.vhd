@@ -37,16 +37,23 @@ architecture Behavioral of add1b is
   signal s0: std_logic;
   signal s1: std_logic;
   signal s2: std_logic;
+  component half_add
+	port (
+	  A: in std_logic;
+      B: in std_logic;
+      X: out std_logic;
+      Cout: out std_logic);
+  end component;
 begin
 	-- first add A and B with HA
-  add0: entity work.half_add
+	add0: component half_add
     port map (
       A => A,
       B => B,
       X => s0,
       Cout => s1);
 	-- then add first result with Cin to get final result
-  add1: entity work.half_add
+  add1: component half_add
     port map (
       A => Cin,
       B => s0,
@@ -76,30 +83,38 @@ architecture Behavioral of add4b is
   signal C0: std_logic; -- Cout0 -> Cin1
   signal C1: std_logic; -- Cout1 -> Cin2
   signal C2: std_logic; -- Cout2 -> Cin3
+  component add1b 
+    port (
+      A: in std_logic;
+      B: in std_logic;
+      Cin: in std_logic;
+      X: out std_logic;
+      Cout: out std_logic);
+  end component;
 begin
 	-- full adder ladder (e.g. Cin -> Cin0, Cout0 -> Cin1, ..., Cout3 -> Cout)
-  add0: entity work.add1b
+  add0: component add1b
     port map (
       A => A(0),
       B => B(0),
       Cin => Cin,
       X => X(0),
       Cout => C0);
-  add1: entity work.add1b
+  add1: component add1b
     port map (
       A => A(1),
       B => B(1),
       Cin => C0,
       X => X(1),
       Cout => C1);
-  add2: entity work.add1b
+  add2: component add1b
     port map (
       A => A(2),
       B => B(2),
       Cin => C1,
       X => X(2),
       Cout => C2);
-  add3: entity work.add1b
+  add3: component add1b
     port map (
       A => A(3),
       B => B(3),

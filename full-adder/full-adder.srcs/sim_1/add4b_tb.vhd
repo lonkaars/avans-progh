@@ -48,6 +48,7 @@ begin
 		for I in 0 to 255 loop
 
 			Test_case <= Std_logic_vector(to_unsigned(I,8));
+			wait for 1 ps;
 			A(0) <= Test_case(0);
 			A(1) <= Test_case(1);
 			A(2) <= Test_case(2);
