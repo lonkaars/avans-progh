@@ -23,7 +23,7 @@ architecture Behavioral of main is
 	end component;
 	component bin2bcd
 		port (
-			I: in std_logic_vector(3 downto 0);
+			I: in std_logic_vector(4 downto 0);
 			X: out std_logic_vector(3 downto 0);
 			Y: out std_logic_vector(3 downto 0));
 	end component;
@@ -38,6 +38,7 @@ architecture Behavioral of main is
 			DS: out std_logic_vector(3 downto 0));
 	end component;
 	signal X: std_logic_vector(3 downto 0); -- add out
+	signal Cout: std_logic; -- add carry out
 	signal BCD0: std_logic_vector(3 downto 0); -- bcd 10^0
 	signal BCD1: std_logic_vector(3 downto 0); -- bcd 10^1
 	signal CLK_T: std_logic_vector(18 downto 0); -- clock counter for display clock
@@ -57,7 +58,7 @@ begin
 			Cout => open);
 	-- bcd: component bin2bcd
 	-- 	port map (
-	-- 		I => X,
+	-- 		I => Cout & X,
 	-- 		X => BCD0,
 	-- 		Y => BCD1);
 	-- disp: component bcd2disp
@@ -66,7 +67,9 @@ begin
 	-- 		N0 => BCD0,
 	-- 		N1 => BCD1,
 	-- 		N2 => "0000",
-	-- 		N3 => "0000");
+	-- 		N3 => "0000",
+	-- 		DD => DD,
+	-- 		DS => DS);
 	disp: component bcd2disp
 		port map (
 			CLK => CLK_T(18),
