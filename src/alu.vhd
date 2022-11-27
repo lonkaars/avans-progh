@@ -25,7 +25,8 @@ architecture Behavioral of ALU is
 				 R_RotateRightA,
 				 R_AllZeros,
 				 R_AllOnes,
-				 R: std_logic_vector(7 downto 0);
+				 R: std_logic_vector(7 downto 0) := (others => '0');
+	signal C_AMinB, C_BMinA, C_MinA, C_MinB: std_logic := '0'; -- Minus carry out (test bench edge case)
 	component add8b is
 		port (
 			A: in std_logic_vector(7 downto 0);
@@ -45,7 +46,8 @@ architecture Behavioral of ALU is
 	component twoc is
 		port (
 			A: in std_logic_vector(7 downto 0);
-			X: out std_logic_vector(7 downto 0));
+			X: out std_logic_vector(7 downto 0);
+      Cout: out std_logic);
 	end component;
 	component sl8b is
 		port (
@@ -91,65 +93,82 @@ begin
 			B => B,
 			Cin => '0',
 			X => R_AminB,
-			Cout => open);
+			Cout => C_AMinB);
 	BminA: component min8b
 		port map(
 			A => B,
 			B => A,
 			Cin => '0',
 			X => R_BminA,
-			Cout => open);
+			Cout => C_BMinA);
 	R_OnlyA <= A;
 	R_OnlyB <= B;
 	MinA: component twoc
-		port map(A => A, X => R_MinA);
+		port map(
+      A => A,
+      X => R_MinA,
+      Cout => C_MinA);
 	MinB: component twoc
-		port map(A => B, X => R_MinA);
+		port map(
+      A => B,
+      X => R_MinB,
+      Cout => C_MinB);
 	ShiftLeftA: component sl8b
 		port map(
 			A => A,
-			S => B,
+			S => x"01",
 			X => R_ShiftLeftA);
 	ShiftRightA: component sr8b
 		port map(
 			A => A,
-			S => B,
+			S => x"01",
 			X => R_ShiftRightA);
 	RotateLeftA: component rl8b
 		port map(
 			A => A,
-			S => B,
+			S => x"01",
 			X => R_RotateLeftA);
 	RotateRightA: component rr8b
 		port map(
 			A => A,
-			S => B,
+			S => x"01",
 			X => R_RotateRightA);
 
 	with Op select
 		R <=
-			R_AplusB       when x"0",
-			R_AminB        when x"1",
-			R_BminA        when x"2",
-			R_Dummy        when x"3",
-			R_OnlyA        when x"4",
-			R_OnlyB        when x"5",
-			R_MinA         when x"6",
-			R_MinB         when x"7",
-			R_ShiftLeftA   when x"8",
-			R_ShiftRightA  when x"9",
-			R_RotateLeftA  when x"a",
-			R_RotateRightA when x"b",
-			R_Dummy        when x"c",
-			R_Dummy        when x"d",
-			R_AllZeros     when x"e",
-			R_AllOnes      when x"f",
+			R_AplusB       when x"0", -- AplusB
+			R_AminB        when x"1", -- AminB
+			R_BminA        when x"2", -- BminA
+			R_Dummy        when x"3", -- Dummy
+			R_OnlyA        when x"4", -- OnlyA
+			R_OnlyB        when x"5", -- OnlyB
+			R_MinA         when x"6", -- MinA
+			R_MinB         when x"7", -- MinB
+			R_ShiftLeftA   when x"8", -- ShiftLeftA
+			R_ShiftRightA  when x"9", -- ShiftRightA
+			R_RotateLeftA  when x"a", -- RotateLeftA
+			R_RotateRightA when x"b", -- RotateRightA
+			R_Dummy        when x"c", -- Dummy
+			R_Dummy        when x"d", -- Dummy
+			R_AllZeros     when x"e", -- AllZeros
+			R_AllOnes      when x"f", -- AllOnes
 			(others => '0') when others;
+	with Op select
+		Cout <=
+			R(7) when x"0" | x"3" | x"c" | x"d", -- AplusB, MinA, MinB, Dummy
+			C_AMinB when x"1", -- AminB
+			C_BMinA when x"2", -- BminA
+			A(7) when x"4" | x"8" | x"a", -- OnlyA, ShiftLeftA, RotateLeftA
+			B(7) when x"5", -- OnlyB
+      C_MinA when x"6", -- MinA TODO FIX
+      C_MinB when x"7", -- MinB TODO FIX
+			'0'  when x"9" | x"b" | x"e", -- ShiftRightA, RotateRightA, AllZeros
+			'1'  when x"f", -- AllOnes
+			'0' when others;
 	eq: component eq8b
 		port map(
 			A => A,
 			B => B,
 			Equal => Equal);
 	Res <= R;
-	Cout <= R(7);
 end Behavioral;

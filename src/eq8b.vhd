@@ -4,8 +4,7 @@ USE ieee.numeric_std.all;
 
 entity eq8b is
 	port (
-		A: in std_logic_vector(7 downto 0);
-		B: in std_logic_vector(7 downto 0);
+		A, B: in std_logic_vector(7 downto 0);
 		Equal: out std_logic);
 end eq8b;
 
