@@ -10,5 +10,5 @@ end sl8b;
 
 architecture Behavioral of sl8b is
 begin
-	X <= std_logic_vector(shift_left(unsigned(A), 1));
+	X <= std_logic_vector(shift_left(unsigned(A), natural(to_integer(unsigned(S)))));
 end Behavioral;

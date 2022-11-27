@@ -1,0 +1,1 @@
+../../../copyright/bijlagen/binary_to_bcd_digit.vhd

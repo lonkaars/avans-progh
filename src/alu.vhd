@@ -24,7 +24,8 @@ architecture Behavioral of ALU is
 				 R_RotateLeftA,
 				 R_RotateRightA,
 				 R_AllZeros,
-				 R_AllOnes: std_logic_vector(7 downto 0);
+				 R_AllOnes,
+				 R: std_logic_vector(7 downto 0);
 	component add8b is
 		port (
 			A: in std_logic_vector(7 downto 0);
@@ -46,6 +47,26 @@ architecture Behavioral of ALU is
 			A: in std_logic_vector(7 downto 0);
 			X: out std_logic_vector(7 downto 0));
 	end component;
+	component sl8b is
+		port (
+			A, S: in std_logic_vector(7 downto 0);
+			X: out std_logic_vector(7 downto 0));
+	end component;
+	component sr8b is
+		port (
+			A, S: in std_logic_vector(7 downto 0);
+			X: out std_logic_vector(7 downto 0));
+	end component;
+	component rl8b is
+		port (
+			A, S: in std_logic_vector(7 downto 0);
+			X: out std_logic_vector(7 downto 0));
+	end component;
+	component rr8b is
+		port (
+			A, S: in std_logic_vector(7 downto 0);
+			X: out std_logic_vector(7 downto 0));
+	end component;
 	component eq8b is
 		port (
 			A: in std_logic_vector(7 downto 0);
@@ -57,8 +78,56 @@ begin
 	R_AllOnes <= x"ff";
 	R_AllZeros <= x"00";
 
+	AplusB: component add8b
+		port map(
+			A => A,
+			B => B,
+			Cin => '0',
+			X => R_AplusB,
+			Cout => open);
+	AminB: component min8b
+		port map(
+			A => A,
+			B => B,
+			Cin => '0',
+			X => R_AminB,
+			Cout => open);
+	BminA: component min8b
+		port map(
+			A => B,
+			B => A,
+			Cin => '0',
+			X => R_BminA,
+			Cout => open);
+	R_OnlyA <= A;
+	R_OnlyB <= B;
+	MinA: component twoc
+		port map(A => A, X => R_MinA);
+	MinB: component twoc
+		port map(A => B, X => R_MinA);
+	ShiftLeftA: component sl8b
+		port map(
+			A => A,
+			S => B,
+			X => R_ShiftLeftA);
+	ShiftRightA: component sr8b
+		port map(
+			A => A,
+			S => B,
+			X => R_ShiftRightA);
+	RotateLeftA: component rl8b
+		port map(
+			A => A,
+			S => B,
+			X => R_RotateLeftA);
+	RotateRightA: component rr8b
+		port map(
+			A => A,
+			S => B,
+			X => R_RotateRightA);
+
 	with Op select
-		Res <=
+		R <=
 			R_AplusB       when x"0",
 			R_AminB        when x"1",
 			R_BminA        when x"2",
@@ -81,5 +150,6 @@ begin
 			A => A,
 			B => B,
 			Equal => Equal);
-	Cout <= Res(7);
+	Res <= R;
+	Cout <= R(7);
 end Behavioral;
