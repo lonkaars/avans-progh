@@ -26,8 +26,22 @@ architecture Behavioral of ALU is
 				 R_AllZeros,
 				 R_AllOnes,
 				 R: std_logic_vector(7 downto 0) := (others => '0');
-	signal C_AMinB, C_BMinA, C_MinA, C_MinB: std_logic := '0'; -- Minus carry out (test bench edge case)
-	component add8b is
+	signal C_AplusB,
+	       C_AminB,
+				 C_BminA,
+				 C_Dummy,
+				 C_OnlyA,
+				 C_OnlyB,
+				 C_MinA,
+				 C_MinB,
+				 C_ShiftLeftA,
+				 C_ShiftRightA,
+				 C_RotateLeftA,
+				 C_RotateRightA,
+				 C_AllZeros,
+				 C_AllOnes,
+				 C: std_logic := '0';
+	component add8bs is
 		port (
 			A: in std_logic_vector(7 downto 0);
 			B: in std_logic_vector(7 downto 0);
@@ -80,13 +94,13 @@ begin
 	R_AllOnes <= x"ff";
 	R_AllZeros <= x"00";
 
-	AplusB: component add8b
+	AplusB: component add8bs
 		port map(
 			A => A,
 			B => B,
 			Cin => '0',
 			X => R_AplusB,
-			Cout => open);
+			Cout => C_AplusB);
 	AminB: component min8b
 		port map(
 			A => A,
@@ -154,14 +168,15 @@ begin
 			R_AllOnes      when x"f", -- AllOnes
 			(others => '0') when others;
 	with Op select
-		Cout <=
-			R(7) when x"0" | x"3" | x"c" | x"d", -- AplusB, MinA, MinB, Dummy
+		C <=
+			C_AplusB when x"0", -- AplusB
 			C_AMinB when x"1", -- AminB
 			C_BMinA when x"2", -- BminA
+			'0'  when x"3" | x"c" | x"d", -- Dummy's
 			A(7) when x"4" | x"8" | x"a", -- OnlyA, ShiftLeftA, RotateLeftA
 			B(7) when x"5", -- OnlyB
-      C_MinA when x"6", -- MinA TODO FIX
-      C_MinB when x"7", -- MinB TODO FIX
+      C_MinA when x"6", -- MinA
+      C_MinB when x"7", -- MinB
 			'0'  when x"9" | x"b" | x"e", -- ShiftRightA, RotateRightA, AllZeros
 			'1'  when x"f", -- AllOnes
 			'0' when others;
@@ -171,4 +186,5 @@ begin
 			B => B,
 			Equal => Equal);
 	Res <= R;
+	Cout <= C;
 end Behavioral;
