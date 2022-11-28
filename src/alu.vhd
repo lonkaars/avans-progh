@@ -29,17 +29,8 @@ architecture Behavioral of ALU is
 	signal C_AplusB,
 	       C_AminB,
 				 C_BminA,
-				 C_Dummy,
-				 C_OnlyA,
-				 C_OnlyB,
 				 C_MinA,
 				 C_MinB,
-				 C_ShiftLeftA,
-				 C_ShiftRightA,
-				 C_RotateLeftA,
-				 C_RotateRightA,
-				 C_AllZeros,
-				 C_AllOnes,
 				 C: std_logic := '0';
 	component add8bs is
 		port (

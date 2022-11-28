@@ -9,7 +9,8 @@ entity main is
 		Op: in std_logic_vector(3 downto 0);
 		CLK: in std_logic;
 		DD: out std_logic_vector(7 downto 0);
-		DS: out std_logic_vector(3 downto 0));
+		DS: out std_logic_vector(3 downto 0);
+		EQ: out std_logic);
 end main;
 
 architecture Behavioral of main is
@@ -42,7 +43,6 @@ architecture Behavioral of main is
 	end component;
 
 	signal CALC_NUM: std_logic_vector(8 downto 0);
-	signal ALU_EQ: std_logic;
 	signal DISP_NUM: std_logic_vector(8 downto 0);
 	signal N0, N1, N2, N3: std_logic_vector(3 downto 0);
 	signal NC0, NC1: std_logic_vector(8 downto 0); -- carry from bin2bcd8
@@ -62,7 +62,7 @@ begin
 			Op => Op,
 			Res => CALC_NUM(7 downto 0),
 			Cout => CALC_NUM(8),
-			Equal => ALU_EQ);
+			Equal => EQ);
 	
 	topos: component stopp
 		port map(

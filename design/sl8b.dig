@@ -68,7 +68,7 @@
         </entry>
         <entry>
           <string>Output Splitting</string>
-          <string>4*2</string>
+          <string>0-3</string>
         </entry>
       </elementAttributes>
       <pos x="700" y="440"/>
