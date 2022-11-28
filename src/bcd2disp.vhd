@@ -3,10 +3,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 entity bcd2disp is port(
 	CLK: in std_logic;
-	N0: in std_logic_vector(3 downto 0);
-	N1: in std_logic_vector(3 downto 0);
-	N2: in std_logic_vector(3 downto 0);
-	N3: in std_logic_vector(3 downto 0);
+	N0, N1, N2, N3: in std_logic_vector(3 downto 0);
 	DD: out std_logic_vector(7 downto 0); -- display segment data
 	DS: out std_logic_vector(3 downto 0)); -- display select
 end bcd2disp;
