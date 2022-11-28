@@ -60,6 +60,7 @@ architecture Behavioral of ALU is
 	component twoc is
 		port (
 			A: in std_logic_vector(7 downto 0);
+			Cin: in std_logic;
 			X: out std_logic_vector(7 downto 0);
       Cout: out std_logic);
 	end component;
@@ -120,11 +121,13 @@ begin
 	MinA: component twoc
 		port map(
       A => A,
+			Cin => A(7),
       X => R_MinA,
       Cout => C_MinA);
 	MinB: component twoc
 		port map(
       A => B,
+			Cin => B(7),
       X => R_MinB,
       Cout => C_MinB);
 	ShiftLeftA: component sl8b

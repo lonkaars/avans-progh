@@ -17,6 +17,7 @@ architecture Behavioral of min8b is
 	component twoc
 		port (
 			A: in std_logic_vector(7 downto 0);
+			Cin: in std_logic;
 			X: out std_logic_vector(7 downto 0);
       Cout: out std_logic);
 	end component;
@@ -36,6 +37,7 @@ begin
 	complement: component twoc
 		port map (
 			A => B,
+			Cin => B(7),
 			X => Bmin,
       Cout => Bcom);
 	add8: component add8b

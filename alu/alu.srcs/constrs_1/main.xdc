@@ -1,5 +1,4 @@
 set_property IOSTANDARD LVCMOS33 [get_ports CLK]
-set_property IOSTANDARD LVCMOS33 [get_ports Cout]
 set_property IOSTANDARD LVCMOS33 [get_ports Equal]
 set_property IOSTANDARD LVCMOS33 [get_ports {A[0]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {A[1]}]

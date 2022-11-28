@@ -1,1 +1,1 @@
-../../../src/bin2bcd_tb.vhd
+../../../src/bin2bcd5_tb.vhd

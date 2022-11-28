@@ -17,6 +17,9 @@ begin
 	     "01111101" when A = "0110" else
 	     "00100111" when A = "0111" else
 	     "01111111" when A = "1000" else
-	     "01101111" when A = "1001";
+	     "01101111" when A = "1001" else
+	     "00000000" when A = "1010" else
+	     "01000000" when A = "1011" else
+	     "00000000";
 end Behavioral;
 
