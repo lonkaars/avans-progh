@@ -5,13 +5,12 @@ use IEEE.STD_LOGIC_UNSIGNED.ALL;
 
 entity dispdrv is
 	port (
-		CLK: in std_logic;
-		D0: in std_logic_vector(7 downto 0);
-		D1: in std_logic_vector(7 downto 0);
-		D2: in std_logic_vector(7 downto 0);
-		D3: in std_logic_vector(7 downto 0);
+		CLK: in std_logic; -- mux clock (switch to next display on rising edge)
+		D0, D1, D2, D3: in std_logic_vector(7 downto 0); -- display segment inputs
+		-- left -> right = D0 -> D3
 		D: out std_logic_vector(7 downto 0);
 		S: out std_logic_vector(1 downto 0));
+	-- display multiplexer
 end dispdrv;
 
 architecture Behavioral of dispdrv is

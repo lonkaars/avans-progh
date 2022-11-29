@@ -8,6 +8,7 @@ entity min8b is
 		Cin: in std_logic;
 		X: out std_logic_vector(7 downto 0);
 		Cout: out std_logic);
+	-- A - B with sign in/out on Cin/out
 end min8b;
 
 architecture Behavioral of min8b is
@@ -34,12 +35,14 @@ architecture Behavioral of min8b is
 			X, Cout: out std_logic);
 	end component;
 begin
+	-- calculate (B * -1)
 	complement: component twoc
 		port map (
 			A => B,
 			Cin => B(7),
 			X => Bmin,
       Cout => Bcom);
+	-- A + (-B)
 	add8: component add8b
 		port map (
 			A => A,
@@ -47,6 +50,7 @@ begin
 			Cin => Cin,
 			X => X,
 			Cout => carry);
+	-- calculate bit 9 (sign in/out)
   add1: component add1b
     port map(
       A => A(7),

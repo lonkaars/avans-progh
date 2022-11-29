@@ -48,4 +48,7 @@ begin
 			S => sr_val,
 			X => part_r);
 	X <= part_l or part_r;
+	-- this rotate-shifts using two bitshifts
+	-- C expression with same functionality:
+	-- (uint8_t) X = (A << S) | (A >> (8-S));
 end Behavioral;

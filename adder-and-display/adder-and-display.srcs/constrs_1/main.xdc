@@ -41,3 +41,6 @@ set_property PACKAGE_PIN U4 [get_ports {DS[2]}]
 set_property PACKAGE_PIN V4 [get_ports {DS[1]}]
 set_property PACKAGE_PIN W4 [get_ports {DS[0]}]
 
+
+set_property IOSTANDARD LVCMOS33 [get_ports Cin]
+set_property PACKAGE_PIN V2 [get_ports Cin]

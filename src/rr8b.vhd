@@ -36,4 +36,8 @@ begin
 			A => A,
 			S => s_val,
 			X => X);
+	-- this rotate-shifts using rotate right
+	-- C expressions with same functionality:
+	-- (uint8_t) X = (A << (8-S)) | (A >> S);
+	-- X = rotateLeft(A, 8-S);
 end Behavioral;

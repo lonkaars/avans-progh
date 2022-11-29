@@ -25,13 +25,13 @@ architecture Behavioral of ALU is
 				 R_RotateRightA,
 				 R_AllZeros,
 				 R_AllOnes,
-				 R: std_logic_vector(7 downto 0) := (others => '0');
+				 R: std_logic_vector(7 downto 0) := (others => '0'); -- operation results
 	signal C_AplusB,
 	       C_AminB,
 				 C_BminA,
 				 C_MinA,
 				 C_MinB,
-				 C: std_logic := '0';
+				 C: std_logic := '0'; -- special case operation carry out bit (sign bit)
 	component add8bs is
 		port (
 			A: in std_logic_vector(7 downto 0);
@@ -85,6 +85,8 @@ begin
 	R_Dummy <= x"00";
 	R_AllOnes <= x"ff";
 	R_AllZeros <= x"00";
+	R_OnlyA <= A;
+	R_OnlyB <= B;
 
 	AplusB: component add8bs
 		port map(
@@ -107,8 +109,6 @@ begin
 			Cin => '0',
 			X => R_BminA,
 			Cout => C_BMinA);
-	R_OnlyA <= A;
-	R_OnlyB <= B;
 	MinA: component twoc
 		port map(
       A => A,

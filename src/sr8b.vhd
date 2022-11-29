@@ -6,6 +6,7 @@ entity sr8b is
 	port (
 		A, S: in std_logic_vector(7 downto 0);
 		X: out std_logic_vector(7 downto 0));
+	-- X = A >> S;
 end sr8b;
 
 architecture Behavioral of sr8b is

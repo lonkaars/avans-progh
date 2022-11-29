@@ -9,6 +9,7 @@ entity add8b is
 		Cin: in std_logic;
 		X: out std_logic_vector(7 downto 0);
 		Cout: out std_logic);
+	-- chain of eight add1b components
 end add8b;
 
 architecture Behavioral of add8b is

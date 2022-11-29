@@ -1,11 +1,13 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity bcd2disp is port(
-	CLK: in std_logic;
-	N0, N1, N2, N3: in std_logic_vector(3 downto 0);
-	DD: out std_logic_vector(7 downto 0); -- display segment data
-	DS: out std_logic_vector(3 downto 0)); -- display select
+entity bcd2disp is
+	port(
+		CLK: in std_logic; -- mux clock (switch to next display on rising edge)
+		N0, N1, N2, N3: in std_logic_vector(3 downto 0); -- input bcd digits
+		DD: out std_logic_vector(7 downto 0); -- display segment data
+		DS: out std_logic_vector(3 downto 0)); -- display select
+	-- display 4 bcd digits on display
 end bcd2disp;
 
 architecture Behavioral of bcd2disp is

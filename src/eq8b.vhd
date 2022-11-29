@@ -6,6 +6,7 @@ entity eq8b is
 	port (
 		A, B: in std_logic_vector(7 downto 0);
 		Equal: out std_logic);
+-- check if A = B
 end eq8b;
 
 architecture Behavioral of eq8b is

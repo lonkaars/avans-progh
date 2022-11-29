@@ -25,6 +25,8 @@ architecture Behavioral of add8bs is
 			X, Cout: out std_logic);
 	end component;
 begin
+	-- add8b (signed)
+	-- add first eight bits normally
 	add0: component add8b
 		port map (
 			A => A,
@@ -32,6 +34,7 @@ begin
 			Cin => Cin,
 			X => X,
 			Cout => C);
+	-- extend signed (two's complement) number to 9-bits
 	add1: component add1b
 		port map (
 			A => A(7),
