@@ -9,24 +9,27 @@ entity bin2bcd_tb is
 end bin2bcd_tb;
 
 architecture Behavioral of bin2bcd_tb is
-component bin2bcd port(
-	I: in std_logic_vector(4 downto 0);
-	X: out std_logic_vector(3 downto 0);
-	Y: out std_logic_vector(3 downto 0));
+component bin2bcd
+	generic(
+		width: integer := 5);
+	port(
+		A: in std_logic_vector(width-1 downto 0); -- binary input (unsigned 8-bit)
+		X: out std_logic_vector(3 downto 0); -- bcd output
+		R: out std_logic_vector(width-1 downto 0)); -- remainder after operation
 end component;
 -- test input
 signal I: std_logic_vector(4 downto 0) := (others => '0');
 -- test output
 signal X: std_logic_vector(3 downto 0);
-signal Y: std_logic_vector(3 downto 0);
+signal Y: std_logic_vector(4 downto 0);
 
 signal test_case: std_logic_vector(4 downto 0);
 signal OK: boolean := true;
 begin
 	test: bin2bcd port map(
-		I => I,
+		A => I,
 		X => X,
-		Y => Y);
+		R => Y);
 
 	tb: process
 		variable I_t: integer := 0;
@@ -68,7 +71,7 @@ begin
 		if X /= std_logic_vector(to_unsigned(X_t,4)) then
 			OK <= false;
 		end if;
-		if Y /= std_logic_vector(to_unsigned(Y_t,4)) then
+		if Y /= std_logic_vector(to_unsigned(Y_t,5)) then
 			OK <= false;
 		end if;
 
