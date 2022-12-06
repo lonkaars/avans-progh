@@ -27,12 +27,15 @@ begin
 	begin
 		nextState <= state;
 		case state is
+			-- reset (reset button is down, returns to PAUSED_IDLE when button is released)
 			when RESET =>
 				if buttons(0) = '0' then
 					nextState <= PAUSED_IDLE;
 				end if;
 				watchReset <= '1';
 				watchRunning <= '0';
+
+			-- paused (button up)
 			when PAUSED_IDLE =>
 				if buttons(0) = '1' and buttons(1) = '0' then
 					nextState <= RESET;
@@ -42,18 +45,24 @@ begin
 				end if;
 				watchReset <= '0';
 				watchRunning <= '0';
+
+			-- paused (wait for button down to release)
 			when PAUSED_TRANS =>
 				if buttons(1) = '0' then
 					nextState <= RUNNING_IDLE;
 				end if;
 				watchReset <= '0';
 				watchRunning <= '0';
+
+			-- running (button up)
 			when RUNNING_IDLE =>
 				if buttons(1) = '1' then
 					nextState <= RUNNING_TRANS;
 				end if;
 				watchReset <= '0';
 				watchRunning <= '1';
+
+			-- running (wait for button down to release)
 			when RUNNING_TRANS =>
 				if buttons(1) = '0' then
 					nextState <= PAUSED_IDLE;

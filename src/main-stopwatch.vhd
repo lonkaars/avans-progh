@@ -53,6 +53,7 @@ begin
 		end if;
 	end process;
 
+	-- finite state machine (synchronous Watch controller)
 	controller: component FSM_controller
 		port map(
 			clk => clk,
@@ -60,6 +61,7 @@ begin
 			buttons => buttons,
 			watchRunning => watchRunning,
 			watchReset => watchReset);
+	-- stopwatch
 	stopwatch: component Watch
 		port map(
 			clk => clk,
@@ -68,6 +70,8 @@ begin
 			watchReset => watchReset,
 			mins => mins,
 			secs => secs);
+	
+	-- convert seconds to bcd
 	bcd0: component bin2bcd
 		port map(
 			A => secs,
@@ -78,6 +82,8 @@ begin
 			A => NC0,
 			X => N1,
 			R => open);
+
+	-- convert minutes to bcd
 	bcd2: component bin2bcd
 		port map(
 			A => mins,
@@ -88,6 +94,8 @@ begin
 			A => NC1,
 			X => N3,
 			R => open);
+
+	-- display bcd digits
 	disp: component bcd2disp
 		port map(
 			CLK => CLK_T(16),
