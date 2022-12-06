@@ -53,19 +53,19 @@ begin
 		end if;
 	end process;
 
-	-- controller: component FSM_controller
-	-- 	port map(
-	-- 		clk => clk,
-	-- 		sysReset => sysReset,
-	-- 		buttons => buttons,
-	-- 		watchRunning => watchRunning,
-	-- 		watchReset => watchReset);
+	controller: component FSM_controller
+		port map(
+			clk => clk,
+			sysReset => sysReset,
+			buttons => buttons,
+			watchRunning => watchRunning,
+			watchReset => watchReset);
 	stopwatch: component Watch
 		port map(
 			clk => clk,
 			sysReset => sysReset,
-			watchRunning => buttons(0),
-			watchReset => buttons(1),
+			watchRunning => watchRunning,
+			watchReset => watchReset,
 			mins => mins,
 			secs => secs);
 	bcd0: component bin2bcd
