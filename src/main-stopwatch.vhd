@@ -53,19 +53,19 @@ begin
 		end if;
 	end process;
 
-	controller: component FSM_controller
-		port map(
-			clk => clk,
-			sysReset => sysReset,
-			buttons => buttons,
-			watchRunning => watchRunning,
-			watchReset => watchReset);
+	-- controller: component FSM_controller
+	-- 	port map(
+	-- 		clk => clk,
+	-- 		sysReset => sysReset,
+	-- 		buttons => buttons,
+	-- 		watchRunning => watchRunning,
+	-- 		watchReset => watchReset);
 	stopwatch: component Watch
 		port map(
 			clk => clk,
 			sysReset => sysReset,
-			watchRunning => watchRunning,
-			watchReset => watchReset,
+			watchRunning => buttons(0),
+			watchReset => buttons(1),
 			mins => mins,
 			secs => secs);
 	bcd0: component bin2bcd
@@ -91,10 +91,10 @@ begin
 	disp: component bcd2disp
 		port map(
 			CLK => CLK_T(16),
-			N0 => N0,
-			N1 => N1,
-			N2 => N2,
-			N3 => N3,
+			N0 => N3,
+			N1 => N2,
+			N2 => N1,
+			N3 => N0,
 			DD => DD,
 			DS => DS);
 end Behavioral;
