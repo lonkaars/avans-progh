@@ -16,7 +16,7 @@ architecture Behavioral of pixeldata is
 			clk, reset: in std_logic;
 			x, y: out std_logic_vector(9 downto 0));
 	end component;
-	signal sx, sy: std_logic_vector(9 downto 0);
+	signal sx, sy: std_logic_vector(9 downto 0); -- square x and y
 begin
 	bounce_pos: component bounce
 		port map (
