@@ -28,10 +28,12 @@ begin
 	begin
 		if rising_edge(pixel_clk) then
 			if (x >= sx) and (x < sx + 10) and (y >= sy) and (y < sy + 10) then
+				-- draw 10x10 pixel box in white
 				red <= '1';
 				green <= '1';
 				blue <= '1';
 			else
+				-- blue background
 				red <= '0';
 				green <= '0';
 				blue <= '1';

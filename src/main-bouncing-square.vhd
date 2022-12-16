@@ -31,6 +31,7 @@ architecture Behavioral of main is
 	signal x, y: std_logic_vector(9 downto 0); -- current pixel xy
 	signal rgb: std_logic_vector(11 downto 0); -- pixel rgb out -> vga in
 begin
+	-- clock divider
 	process(clk)
 	begin
 		if rising_edge(clk) then
@@ -38,6 +39,7 @@ begin
 		end if;
 	end process;
 
+	-- get current pixel color
 	pixel: component pixeldata
 		port map (
 			pixel_clk => clk25(1),
@@ -48,8 +50,10 @@ begin
 			red => r,
 			green => g,
 			blue => b);
+	-- convert binary r, g, and b to 12-bit rgb
 	rgb <= r & r & r & r & g & g & g & g & b & b & b & b;
 
+	-- display on vga monitor
 	display: component vga
 	port map(
 		reset => reset,
@@ -62,8 +66,8 @@ begin
 		red => red,
 		green => green,
 		blue => blue);
-	vsync <= vsync_temp;
-	vsync_inv <= not vsync_temp;
+	vsync <= vsync_temp; -- vsync output
+	vsync_inv <= not vsync_temp; -- frame clock output
 
 
 end Behavioral;
