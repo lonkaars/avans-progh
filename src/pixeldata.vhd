@@ -26,14 +26,16 @@ begin
 			y => sy);
 	process(pixel_clk, sx, sy)
 	begin
-		if (x >= sx) and (x < sx + 10) and (y >= sy) and (y < sy + 10) then
-			red <= '1';
-			green <= '1';
-			blue <= '1';
-		else
-			red <= '0';
-			green <= '0';
-			blue <= '1';
+		if rising_edge(pixel_clk) then
+			if (x >= sx) and (x < sx + 10) and (y >= sy) and (y < sy + 10) then
+				red <= '1';
+				green <= '1';
+				blue <= '1';
+			else
+				red <= '0';
+				green <= '0';
+				blue <= '1';
+			end if;
 		end if;
 	end process;
 end Behavioral;

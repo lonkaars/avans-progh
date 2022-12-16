@@ -15,59 +15,72 @@ architecture Behavioral of bounce is
 	-- x state, x next, y state, y next
 	signal x_s, x_n, y_s, y_n: states := NORMAL;
 	constant velocity: std_logic_vector(9 downto 0) := "0000000001";
+	signal temp_x, temp_y: std_logic_vector(9 downto 0) := (others => '0');
 begin
-	process(clk)
-		variable temp_x, temp_y: std_logic_vector(9 downto 0) := "0000001000";
-	begin
-		temp_x := temp_x + velocity;
-		temp_y := temp_y + velocity;
-		x <= temp_x;
-		y <= temp_y;
-	end process;
-	-- FSM: process(clk, reset)
+	-- process(clk)
+	-- 	variable temp_x, temp_y: std_logic_vector(9 downto 0) := "0000001000";
 	-- begin
-	-- 	if reset = '1' then
-	-- 		x_s <= NORMAL;
-	-- 		y_s <= NORMAL;
-	-- 	elsif rising_edge(clk) then
-	-- 		x_s <= x_n;
-	-- 		y_s <= y_n;
+	-- 	if rising_edge(clk) then
+	-- 		temp_x := temp_x + velocity;
+	-- 		temp_y := temp_y + velocity;
+	-- 		x <= temp_x;
+	-- 		y <= temp_y;
 	-- 	end if;
 	-- end process;
+	FSM: process(clk, reset)
+	begin
+		if reset = '1' then
+			x_s <= NORMAL;
+			y_s <= NORMAL;
+			-- temp_x <= (others => '0');
+			-- temp_y <= (others => '0');
+		elsif rising_edge(clk) then
+			x_s <= x_n;
+			y_s <= y_n;
+		end if;
+	end process;
 
-	-- process(x_s)
-	-- begin
-	-- 	x_n <= x_s;
+	process(clk, x_s, temp_x, temp_y)
+	begin
+		x_n <= x_s;
 
-	-- 	case x_s is
-	-- 		when NORMAL =>
-	-- 			temp_x <= temp_x + velocity;
-	-- 			if temp_x + velocity > 630 then
-	-- 				x_n <= REVERSE;
-	-- 			end if;
-	-- 		when REVERSE =>
-	-- 			temp_x <= temp_x - velocity;
-	-- 			if temp_x - velocity < 0 then
-	-- 				x_n <= NORMAL;
-	-- 			end if;
-	-- 	end case;
-	-- end process;
+		case x_s is
+			when NORMAL =>
+				if rising_edge(clk) then
+					temp_x <= temp_x + velocity;
+					if temp_x + velocity > 630 then
+						x_n <= REVERSE;
+					end if;
+				end if;
+			when REVERSE =>
+				if rising_edge(clk) then
+					temp_x <= temp_x - velocity;
+					if temp_x - velocity < 0 then
+						x_n <= NORMAL;
+					end if;
+				end if;
+		end case;
+	end process;
 
-	-- process(y_s)
-	-- begin
-	-- 	y_n <= y_s;
+	process(y_s)
+	begin
+		y_n <= y_s;
 
-	-- 	case y_s is
-	-- 		when NORMAL =>
-	-- 			temp_y <= temp_y + velocity;
-	-- 			if temp_y + velocity > 630 then
-	-- 				y_n <= REVERSE;
-	-- 			end if;
-	-- 		when REVERSE =>
-	-- 			temp_y <= temp_y - velocity;
-	-- 			if temp_y - velocity < 0 then
-	-- 				y_n <= NORMAL;
-	-- 			end if;
-	-- 	end case;
-	-- end process;
+		case y_s is
+			when NORMAL =>
+				if rising_edge(clk) then
+					temp_y <= temp_y + velocity;
+					if temp_y + velocity > 630 then
+						y_n <= REVERSE;
+					end if;
+				end if;
+			when REVERSE =>
+				if rising_edge(clk) then
+					temp_y <= temp_y - velocity;
+					if temp_y - velocity < 0 then
+						y_n <= NORMAL;
+					end if;
+				end if;
+		end case;
+	end process;
 end Behavioral;
