@@ -15,43 +15,63 @@ end vga;
 architecture Behavioral of vga is
 	signal hcount: std_logic_vector(9 downto 0);
 	signal vcount: std_logic_vector(9 downto 0);
+
+	-- timing info from http://www.tinyvga.com/vga-timing/640x480@60Hz
+	constant screen_sz_ver: natural := 480; -- screen size vertical
+	constant pulse_ver: natural := 2; -- vertical sync pulse width
+	constant front_porch_ver: natural := 10; -- vertical front porch pulse width
+	constant back_porch_ver: natural := 33; -- vertical back porch pulse width
+	constant screen_sz_hor: natural := 640; -- screen size horizontal
+	constant pulse_hor: natural := 96; -- horizontal sync pulse width
+	constant front_porch_hor: natural := 16; -- horizontal front porch pulse width
+	constant back_porch_hor: natural := 48; -- horizontal back porch pulse width
 begin
 
-	process (clk25) 
+	process (clk25)
 	begin
 		if rising_edge(clk25) then
-			if (hcount >= 144) and (hcount < 784) and (vcount >= 31) and (vcount < 511) then
-				x <= hcount - 144;
-				y <= vcount - 31;
+			-- display area
+			if (hcount >= (pulse_hor + back_porch_hor)) and
+			   (hcount < (pulse_hor + back_porch_hor + screen_sz_hor)) and
+			   (vcount >= (pulse_ver + back_porch_ver)) and
+			   (vcount < (pulse_ver + back_porch_ver + screen_sz_ver)) then
+				x <= hcount - (pulse_hor + back_porch_hor);
+				y <= vcount - (pulse_ver + back_porch_ver);
 				red <= rgb(11 downto 8);
 				green <= rgb(7 downto 4);
 				blue <= rgb(3 downto 0);
 			else
+				-- turn off RGB during sync pulses
 				red <= x"0";
-				green <= x"0";	
+				green <= x"0";
 				blue <= x"0";
 			end if;
 
-			if hcount < 97 then
+			-- vertical pulse
+			if hcount <= pulse_hor then
 				hsync <= '0';
 			else
 				hsync <= '1';
 			end if;
 
-			if vcount < 3 then
+			-- horizontal pulse
+			if vcount <= pulse_ver then
 				vsync <= '0';
 			else
 				vsync <= '1';
 			end if;
 
+			-- update horizontal line counter
 			hcount <= hcount + 1;
 
-			if hcount = 800 then
+			-- horizontal line counter overflow
+			if hcount = (front_porch_hor + back_porch_hor + pulse_hor + screen_sz_hor) then
 				vcount <= vcount + 1;
 				hcount <= (others => '0');
 			end if;
 
-			if vcount = 521 then				
+			-- vertical line counter overflow
+			if vcount = (front_porch_ver + back_porch_ver + pulse_ver + screen_sz_ver) then
 				vcount <= (others => '0');
 			end if;
 		end if;

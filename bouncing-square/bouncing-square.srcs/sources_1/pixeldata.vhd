@@ -1,1 +1,1 @@
-../../../src/pixeldata.vhd
+../../../src/pixeldata-square.vhd
