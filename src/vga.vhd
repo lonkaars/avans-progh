@@ -26,9 +26,17 @@ architecture Behavioral of vga is
 	constant front_porch_hor: natural := 16; -- horizontal front porch pulse width
 	constant back_porch_hor: natural := 48; -- horizontal back porch pulse width
 begin
-
 	process (clk25)
 	begin
+		-- if reset = '1' then
+		-- 	red <= x"0";
+		-- 	green <= x"0";
+		-- 	blue <= x"0";
+		-- 	hsync <= '0';
+		-- 	vsync <= '0';
+		-- 	hcount <= (others => '0');
+		-- 	vcount <= (others => '0');
+		-- elsif rising_edge(clk25) then
 		if rising_edge(clk25) then
 			-- display area
 			if (hcount >= (pulse_hor + back_porch_hor)) and

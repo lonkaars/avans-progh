@@ -23,8 +23,8 @@ architecture Behavioral of pixeldata is
 			douta: out std_logic_vector(11 downto 0));
 	end component;
 	signal sx, sy: std_logic_vector(9 downto 0); -- square x and y
-	signal bitmap_idx: std_logic_vector(6 downto 0);
-	signal bitmap_out: std_logic_vector(11 downto 0);
+	signal bitmap_idx: std_logic_vector(6 downto 0); -- address -> rom chip
+	signal bitmap_out: std_logic_vector(11 downto 0); -- output data <- rom chip
 begin
 	bounce_pos: component bounce
 		port map (
@@ -40,9 +40,17 @@ begin
 	process(pixel_clk)
 	begin
 		if rising_edge(pixel_clk) then
-			if (x >= sx) and (x < sx + 10) and (y >= sy) and (y < sy + 10) then
+			-- send bitmap address to rom chip early
+			if (x >= 639) and (sx = 0) and (y >= sy) and (y < (sy + 10)) then
+				-- exception for first display column
+				bitmap_idx <= std_logic_vector(resize(unsigned(y - sy + 1) * 10, bitmap_idx'length));
+			elsif ((x + 1) >= sx) and ((x + 1) < (sx + 10)) and (y >= sy) and (y < (sy + 10)) then
+				-- regular early (horizontal shift)
+				bitmap_idx <= std_logic_vector(resize(unsigned(x + 1 - sx) + unsigned(y - sy) * 10, bitmap_idx'length));
+			end if;
+
+			if (x >= sx) and (x < (sx + 10)) and (y >= sy) and (y < (sy + 10)) then
 				-- draw ball
-				bitmap_idx <= std_logic_vector(resize(unsigned(y - sy) + unsigned(y - sy) * 10, bitmap_idx'length));
 				rgb <= bitmap_out;
 			else
 				-- blue background
