@@ -1,6 +1,7 @@
-pixeldata-ball.vhd: pixeldata-ball-top.vhd bitmap-ball.vhd pixeldata-ball-bottom.vhd
-	cat $^ > $@
+.PHONY: clean
 
-bitmap-ball.vhd: ball.png
+bitmap-ball.coe: ball.png
 	python3 bitmap-ball.py $< > $@
 
+clean:
+	$(RM) bitmap-ball.coe

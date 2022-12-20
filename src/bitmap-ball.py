@@ -21,10 +21,10 @@ def pixeldata():
 if __name__ == "__main__":
   # get array of 12-bit pixels
   pixels = pixeldata()
-  # declare rom_t as array with size len(pixels) and word width of 12 bits
-  print(f"type rom_t is array (0 to {len(pixels) - 1}) of std_logic_vector(11 downto 0);")
-  # format pixel value as x"rgb" (12-bit hexadecimal with padding)
-  formatted_pixels = [f"x\"{hex(c)[2:].zfill(3)}\"" for c in pixels]
-  # print constant bitmap_ball
-  print(f"constant bitmap_ball: rom_t := ({', '.join(formatted_pixels)});")
+  # coe file header
+  print("memory_initialization_radix=16;\nmemory_initialization_vector=", end='')
+  # format pixel value as 12-bit hexadecimal with padding seperated by comma and space
+  formatted_pixels = ','.join([f"{hex(c)[2:].zfill(3)}" for c in pixels])
+  print(f"{formatted_pixels};")
+
 

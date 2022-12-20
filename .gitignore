@@ -5,6 +5,7 @@
 */*.ip_user_files
 */*.runs
 */*.sim
+*/*.gen
 
 # blob
 **/*.dcp
