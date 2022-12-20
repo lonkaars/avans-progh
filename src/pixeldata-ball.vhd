@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 
 entity pixeldata is
 	port (
-		pixel_clk, bounce_clk, reset: in std_logic;
+		sys_clk, pixel_clk, bounce_clk, reset: in std_logic;
 		x, y: in std_logic_vector(9 downto 0);
 		rgb: out std_logic_vector(11 downto 0));
 end pixeldata;
@@ -18,8 +18,9 @@ architecture Behavioral of pixeldata is
 	end component;
 	component ball_rom
 		port (
-			a: in std_logic_vector(6 downto 0);
-			spo: out std_logic_vector(11 downto 0));
+			clka: in std_logic;
+			addra: in std_logic_vector(6 downto 0);
+			douta: out std_logic_vector(11 downto 0));
 	end component;
 	signal sx, sy: std_logic_vector(9 downto 0); -- square x and y
 	signal bitmap_idx: std_logic_vector(6 downto 0);
@@ -33,8 +34,9 @@ begin
 			y => sy);
 	bitmap_lookup: component ball_rom
 		port map (
-			a => bitmap_idx,
-			spo => bitmap_out);
+			clka => sys_clk,
+			addra => bitmap_idx,
+			douta => bitmap_out);
 	process(pixel_clk)
 	begin
 		if rising_edge(pixel_clk) then

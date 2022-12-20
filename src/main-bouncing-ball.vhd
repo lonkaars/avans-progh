@@ -19,7 +19,7 @@ architecture Behavioral of main is
 		hsync, vsync: out std_logic);
 	end component;
   component pixeldata port (
-    pixel_clk, bounce_clk, reset: in std_logic;
+    sys_clk, pixel_clk, bounce_clk, reset: in std_logic;
     x, y: in std_logic_vector(9 downto 0);
     rgb: out std_logic_vector(11 downto 0));
   end component;
@@ -40,6 +40,7 @@ begin
 	-- get current pixel color
 	pixel: component pixeldata
 		port map (
+			sys_clk => clk,
 			pixel_clk => clk25(1),
 			bounce_clk => vsync_inv,
 			reset => reset,
