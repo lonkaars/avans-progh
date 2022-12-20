@@ -1,14 +1,14 @@
 #!/bin/python3
 
 from PIL import Image
-import os
+import sys
 
 WIDTH = 10
 HEIGHT = 10
 
 # return array of 12-bit color values (0bRRRGGGBBB)
 def pixeldata():
-  image = Image.open("./ball.png")
+  image = Image.open(sys.argv[-1]) # use last argument as input image file
   pixels = image.load()
   pixarr = []
   for x in range(WIDTH):
