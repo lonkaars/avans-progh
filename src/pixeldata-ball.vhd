@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 
 entity pixeldata is
 	port (
-		sys_clk, pixel_clk, bounce_clk, reset: in std_logic;
+		sys_clk, bounce_clk, reset: in std_logic;
 		x, y: in std_logic_vector(9 downto 0);
 		rgb: out std_logic_vector(11 downto 0));
 end pixeldata;
@@ -37,20 +37,12 @@ begin
 			clka => sys_clk,
 			addra => bitmap_idx,
 			douta => bitmap_out);
-	process(pixel_clk)
+	process(sys_clk)
 	begin
-		if rising_edge(pixel_clk) then
-			-- send bitmap address to rom chip early
-			if (x >= 639) and (sx = 0) and (y >= sy) and (y < (sy + 10)) then
-				-- exception for first display column
-				bitmap_idx <= std_logic_vector(resize(unsigned(y - sy + 1) * 10, bitmap_idx'length));
-			elsif ((x + 1) >= sx) and ((x + 1) < (sx + 10)) and (y >= sy) and (y < (sy + 10)) then
-				-- regular early (horizontal shift)
-				bitmap_idx <= std_logic_vector(resize(unsigned(x + 1 - sx) + unsigned(y - sy) * 10, bitmap_idx'length));
-			end if;
-
+		if rising_edge(sys_clk) then
 			if (x >= sx) and (x < (sx + 10)) and (y >= sy) and (y < (sy + 10)) then
 				-- draw ball
+				bitmap_idx <= std_logic_vector(resize(unsigned(x - sx) + unsigned(y - sy) * 10, bitmap_idx'length));
 				rgb <= bitmap_out;
 			else
 				-- blue background
