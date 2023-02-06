@@ -5,6 +5,10 @@ OUTFILE="$2"
 rm -f "$OUTFILE"
 echo "memory_initialization_radix=16;" >> "$OUTFILE"
 echo "memory_initialization_vector=" >> "$OUTFILE"
-ffmpeg -y -hide_banner -loglevel warning -i "$INFILE" -ac 1 -f u8 -acodec pcm_u8 - | cut -c1-200000 | hexdump -ve '16/1 "%02x " "\n"' >> "$OUTFILE"
+ffmpeg -y -hide_banner -loglevel warning -i "$INFILE" -ac 1 -f u8 -acodec pcm_u8 - |\
+	cut -c1-200000 |\
+	sed -z 's/[\n\r]//g' |\
+	hexdump -ve '16/1 "%02x " "\n"' |\
+	sed -z 's/\n$//g' >> "$OUTFILE"
 echo ";" >> "$OUTFILE"
 
