@@ -6,14 +6,14 @@ use IEEE.NUMERIC_STD.ALL;
 entity SampleOut is
     generic(
         INPUT_DEPTH: integer := 256;
-        INPUT_SAMPLE_SIZE: integer := 36984;
+        INPUT_SAMPLE_SIZE: integer := 200000;
         INPUT_AUDIO_HZ: integer := 44100;
         INPUT_CLK_HZ: integer := 100000000
     );
     Port ( 	reset, clk : in STD_LOGIC;
 			inCOEData : in STD_LOGIC_VECTOR(7 downto 0);
 			outCOEData : out STD_LOGIC_VECTOR(7 downto 0);
-			outCOEAddress : out STD_LOGIC_VECTOR(15 downto 0)
+			outCOEAddress : out STD_LOGIC_VECTOR(17 downto 0)
 			);
 end SampleOut;
 

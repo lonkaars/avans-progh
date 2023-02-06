@@ -13,21 +13,21 @@ architecture Behavioral of PlayAudio is
     component SampleOut is
         generic(
             INPUT_DEPTH: integer := 256;
-            INPUT_SAMPLE_SIZE: integer := 36984;
+            INPUT_SAMPLE_SIZE: integer := 200000;
             INPUT_AUDIO_HZ: integer := 44100;
             INPUT_CLK_HZ: integer := 100000000
         );
         Port ( 	reset, clk : in STD_LOGIC;
                 inCOEData : in STD_LOGIC_VECTOR(7 downto 0);
 			    outCOEData : out STD_LOGIC_VECTOR(7 downto 0);
-                outCOEAddress : out STD_LOGIC_VECTOR(15 downto 0)
+                outCOEAddress : out STD_LOGIC_VECTOR(17 downto 0)
                 );
     end component;
     
     component AudioOut is
         generic(
             INPUT_DEPTH: integer := 256;
-            INPUT_SAMPLE_SIZE: integer := 36984;
+            INPUT_SAMPLE_SIZE: integer := 200000;
             INPUT_AUDIO_HZ: integer := 44100;
             INPUT_CLK_HZ: integer := 100000000
         );
@@ -39,13 +39,13 @@ architecture Behavioral of PlayAudio is
     component BertErnie44Audio IS
         PORT (
             clka : IN STD_LOGIC;
-            addra : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+            addra : IN STD_LOGIC_VECTOR(17 DOWNTO 0);
             douta : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
         );
     END component;
     
 
-signal COEAddress :STD_LOGIC_VECTOR(15 DOWNTO 0);
+signal COEAddress :STD_LOGIC_VECTOR(17 DOWNTO 0);
 signal COEData :STD_LOGIC_VECTOR(7 DOWNTO 0);
 signal MusicLevel:STD_LOGIC_VECTOR(7 DOWNTO 0);
 
