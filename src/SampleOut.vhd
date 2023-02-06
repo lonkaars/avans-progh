@@ -25,7 +25,6 @@ begin
     outCOEData <= inCOEData;
     
     process (reset, clk) 
-    --variable currentThreasHold: integer;
     begin        
         -- if reset
         if (reset = '1') then
@@ -45,8 +44,8 @@ begin
             count <= count + 1;     
             COEAddress <= COEAddress;
             
-            -- if counter is >= the max amount of pulses per audio sample
-            if (count >= INPUT_CLK_HZ/INPUT_AUDIO_HZ) then -- Next audio sample
+            -- if counter is >= the max amount of pulses paer audio sample
+            if (count >= INPUT_CLK_HZ/INPUT_AUDIO_HZ) then-- Next audio sample
                 count <= 0;
                 COEAddress <= COEAddress + 1; --todo: check timing delay
                 -- add + 1 becouse COEAddress is signal updated ad end of process

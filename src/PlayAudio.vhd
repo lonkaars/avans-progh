@@ -14,8 +14,8 @@ architecture Behavioral of PlayAudio is
         generic(
             INPUT_DEPTH: integer := 256;
             INPUT_SAMPLE_SIZE: integer := 36984;
-            INPUT_AUDIO_KHZ: integer := 44;
-            INPUT_CLK_KHZ: integer := 100000
+            INPUT_AUDIO_HZ: integer := 44100;
+            INPUT_CLK_HZ: integer := 100000000
         );
         Port ( 	reset, clk : in STD_LOGIC;
                 inCOEData : in STD_LOGIC_VECTOR(7 downto 0);
@@ -28,8 +28,8 @@ architecture Behavioral of PlayAudio is
         generic(
             INPUT_DEPTH: integer := 256;
             INPUT_SAMPLE_SIZE: integer := 36984;
-            INPUT_AUDIO_KHZ: integer := 44;
-            INPUT_CLK_KHZ: integer := 100000
+            INPUT_AUDIO_HZ: integer := 44100;
+            INPUT_CLK_HZ: integer := 100000000
         );
         Port ( 	reset, clk : in STD_LOGIC;
                 inMusicData : in STD_LOGIC_VECTOR(7 downto 0);
