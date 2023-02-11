@@ -12,3 +12,9 @@
 
 # other
 copyright/
+
+# macos
+**/.DS_Store
+
+# drawio
+**/.$*
