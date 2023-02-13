@@ -19,6 +19,7 @@ architecture Behavioral of ps2sync is
 	       PS2_DAT_F_1,
 	       PS2_DAT_F_2: std_logic;
 	signal PS2_CLK_F_2_LAST: std_logic;
+	signal NEW_DAT_TMP: std_logic := '0';
 	signal DAT_TMP: std_logic_vector(7 downto 0) := x"00";
 	signal DAT_TMP_IDX: std_logic_vector(2 downto 0) := "000";
 	type states is (START_BIT, READING, PARITY_BIT, STOP_BIT);
@@ -26,8 +27,14 @@ architecture Behavioral of ps2sync is
 begin
 	process(CLK)
 	begin
+		DAT <= DAT_TMP;
+		NEW_DAT <= NEW_DAT_TMP;
+
 		if rising_edge(CLK) then
 			PS2_CLK_F_2_LAST <= PS2_CLK_F_2;
+			if NEW_DAT_TMP = '1' then
+				NEW_DAT_TMP <= '0';
+			end if;
 			if PS2_CLK_F_2_LAST = '1' and PS2_CLK_F_2 = '0' then
 				case state is
 					when START_BIT =>
@@ -40,6 +47,7 @@ begin
 						end if;
 					when PARITY_BIT =>
 						state <= STOP_BIT;
+						NEW_DAT_TMP <= '1';
 					when STOP_BIT =>
 						state <= START_BIT;
 				end case;
