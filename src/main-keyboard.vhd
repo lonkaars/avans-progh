@@ -92,10 +92,10 @@ begin
 	disp: component bcd2disp
 		port map (
 			CLK => DISP_CLK(16),
-			N0 => N0,
-			N1 => N1,
-			N2 => N2,
-			N3 => N3,
+			N0 => N3,
+			N1 => N2,
+			N2 => N1,
+			N3 => N0,
 			DD => DD,
 			DS => DS);
 end Behavioral;

@@ -12,8 +12,9 @@ end d_ff;
 architecture Behavioral of d_ff is
 begin
 	process(CLK)
-		if(rising_edge(CLK)) then
+	begin
+		if rising_edge(CLK) then
 			Q <= D;
 		end if;
-	begin
+	end process;
 end Behavioral;

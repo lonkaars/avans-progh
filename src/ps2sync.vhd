@@ -12,6 +12,12 @@ entity ps2sync is port(
 end ps2sync;
 
 architecture Behavioral of ps2sync is
+	component d_ff
+		port (
+			CLK: in std_logic;
+			D: in std_logic;
+			Q: out std_logic);
+	end component;
 	signal PS2_CLK_F_0,
 	       PS2_CLK_F_1,
 	       PS2_CLK_F_2,
@@ -25,6 +31,13 @@ architecture Behavioral of ps2sync is
 	type states is (START_BIT, READING, PARITY_BIT, STOP_BIT);
 	signal state: states := START_BIT;
 begin
+	clkstab0: component d_ff port map(CLK => CLK, D => PS2_CLK,     Q => PS2_CLK_F_0);
+	clkstab1: component d_ff port map(CLK => CLK, D => PS2_CLK_F_0, Q => PS2_CLK_F_1);
+	clkstab2: component d_ff port map(CLK => CLK, D => PS2_CLK_F_1, Q => PS2_CLK_F_2);
+	datstab0: component d_ff port map(CLK => CLK, D => PS2_DAT,     Q => PS2_DAT_F_0);
+	datstab1: component d_ff port map(CLK => CLK, D => PS2_DAT_F_0, Q => PS2_DAT_F_1);
+	datstab2: component d_ff port map(CLK => CLK, D => PS2_DAT_F_1, Q => PS2_DAT_F_2);
+
 	process(CLK)
 	begin
 		DAT <= DAT_TMP;
