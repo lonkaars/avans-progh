@@ -42,11 +42,11 @@ architecture Behavioral of ps2sync is
                         -- get data
                         DAT_TMP(readCount) <= PS2_DAT;
                         
-                        -- 0 -> 5 get other one
-                        if (readCount < 6) then
+                        -- 0 -> 6 get other one
+                        if (readCount < 7) then
                             state <= READING; 
                         else
-                            -- get last
+                            -- was last
                             state <= PARITY_BIT;
                             readCount <= 0; 
                         end if;   

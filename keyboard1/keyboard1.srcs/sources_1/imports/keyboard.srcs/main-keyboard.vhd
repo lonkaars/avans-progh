@@ -95,10 +95,10 @@ begin
 			CLK => CLK100,
 			S => BCD_SHIFT,
 			D => BCD_NEW,
-			N0 => N0,
-			N1 => N1,
-			N2 => N2,
-			N3 => N3);
+			N0 => N3,
+			N1 => N2,
+			N2 => N1,
+			N3 => N0);
 
 	-- display driver clock divider
 	process(CLK100)
