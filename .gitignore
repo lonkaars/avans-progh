@@ -18,3 +18,7 @@ copyright/
 
 # drawio
 **/.$*
+
+# vivado troep
+*.log
+*.jou
