@@ -64,6 +64,7 @@ begin
 	DS <= "1110" when SX = "00" else
 	      "1101" when SX = "01" else
 	      "1011" when SX = "10" else
-	      "0111" when SX = "11";
+	      "0111" when SX = "11" else
+	      "1111";
 end Behavioral;
 
