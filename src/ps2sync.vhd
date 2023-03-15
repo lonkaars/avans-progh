@@ -5,6 +5,7 @@ use ieee.numeric_std.all;
 
 entity ps2sync is port(
 	CLK: in std_logic; -- system clock
+	RESET: in std_logic; -- async reset
 	PS2_CLK: in std_logic; -- async ps/2 clock input
 	PS2_DAT: in std_logic; -- async ps/2 data input
 	DAT: out std_logic_vector(7 downto 0); -- scancode data
@@ -37,13 +38,18 @@ begin
 	datstab1: component d_ff port map(CLK => CLK, D => PS2_DAT_F_0, Q => PS2_DAT_F_1);
 	datstab2: component d_ff port map(CLK => CLK, D => PS2_DAT_F_1, Q => PS2_DAT_F_2);
 
+	DAT <= DAT_TMP;
+	NEW_DAT <= NEW_DAT_TMP;
+
 	process(CLK)
 		variable DAT_TMP_IDX: natural range 0 to 10 := 0;
 	begin
-		DAT <= DAT_TMP;
-		NEW_DAT <= NEW_DAT_TMP;
-
-		if rising_edge(CLK) then
+		if RESET = '1' then
+			DAT_TMP_IDX := 0;
+			DAT_TMP <= (others => '0');
+			NEW_DAT_TMP <= '0';
+			state <= START_BIT;
+		elsif rising_edge(CLK) then
 			-- update stable CLK last
 			PS2_CLK_F_2_LAST <= PS2_CLK_F_2;
 

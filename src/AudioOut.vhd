@@ -6,7 +6,6 @@ use IEEE.NUMERIC_STD.ALL;
 entity AudioOut is
     generic(
         INPUT_DEPTH: integer := 256;
-        INPUT_SAMPLE_SIZE: integer := 200000;
         INPUT_AUDIO_HZ: integer := 44100;
         INPUT_CLK_HZ: integer := 100000000
     );
