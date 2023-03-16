@@ -1,6 +1,5 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use ieee.std_logic_unsigned.all;
 use ieee.numeric_std.all;
 
 entity ps2sync is port(
@@ -33,7 +32,12 @@ architecture Behavioral of ps2sync is
             if (PS2_CLK_OLD = '1' and PS2_CLK = '0') then                
                 case state is
                     when START_BIT =>
-                        state <= READING; 
+                        -- if correct signal
+                        if(PS2_DAT = '0') then
+                            state <= READING; 
+                        else
+                            state <= START_BIT; 
+                        end if;
                         
                     when READING =>
                         -- always add 1 overwrite later
@@ -52,11 +56,21 @@ architecture Behavioral of ps2sync is
                         end if;   
                                              
                     when PARITY_BIT =>
-                        -- todo: add later                        
-                        state <= STOP_BIT; 
-                    when STOP_BIT =>
-                        NEW_DAT <= '1';
-                        state <= START_BIT; 
+                        -- if correct paraty (even)
+                        if(PS2_DAT /= std_logic (DAT_TMP(0) xor DAT_TMP(1) xor DAT_TMP(2) xor DAT_TMP(3) xor DAT_TMP(4) xor DAT_TMP(5) xor DAT_TMP(6) xor DAT_TMP(7)) ) then
+                            state <= STOP_BIT; 
+                        else
+                            state <= START_BIT; 
+                        end if;
+                    when STOP_BIT =>                    
+                        -- if correct signal
+                        if(PS2_DAT = '1') then
+                            NEW_DAT <= '1';
+                            state <= START_BIT; 
+                        else
+                            NEW_DAT <= '0';
+                            state <= START_BIT; 
+                        end if;
                     when others =>
                         state <= START_BIT; 
                 end case;
