@@ -16,16 +16,6 @@ entity top is port (
 end top;
 
 architecture Behavioral of top is
-	component AudioOut
-		generic (
-			INPUT_DEPTH: integer := 256;
-			INPUT_AUDIO_HZ: integer := 44100;
-			INPUT_CLK_HZ: integer := 100000000);
-		port (
-			reset, clk : in std_logic;
-			inMusicData : in std_logic_vector(7 downto 0);
-			outMusic : out std_logic);
-	end component;
 	component pixclkgen is port ( 
 		vga_pixel_clk : out std_logic;
 		reset : in std_logic;
@@ -74,7 +64,7 @@ architecture Behavioral of top is
 		NOTE_IDX: in std_logic_vector(3 downto 0); -- note index
 		NOTE_WRONG: in std_logic; -- note wrong
 		NOTE_PLAY: in std_logic; -- output audio
-		AUDIO_LEVEL: out std_logic_vector(7 downto 0)); -- audio signal level
+		PWM_OUT: out std_logic); -- audio signal level
 	end component;
 
 	signal SYNC_DAT: std_logic_vector(7 downto 0); -- ps2sync <-> scancodefilter
@@ -112,13 +102,7 @@ begin
 		NOTE_IDX => NOTE_IDX,
 		NOTE_WRONG => NOTE_WRONG,
 		NOTE_PLAY => NOTE_PLAY,
-		AUDIO_LEVEL => AUDIO_SIGNAL);
-
-	audio_pwm: AudioOut port map (
-		reset => SYSRESET,
-		clk => SYSCLK,
-		inMusicData => AUDIO_SIGNAL,
-		outMusic => PWM_OUT_TEMP);
+		PWM_OUT => PWM_OUT_TEMP);
 
 	PWM_OUT <= PWM_OUT_TEMP and GLOBAL_MUTE;
 
