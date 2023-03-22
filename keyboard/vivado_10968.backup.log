@@ -1,0 +1,103 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Mon Feb 13 09:55:31 2023
+# Process ID: 10968
+# Current directory: D:/GitHub/ProgHLoek/avans-progh/keyboard
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent18344 D:\GitHub\ProgHLoek\avans-progh\keyboard\keyboard.xpr
+# Log file: D:/GitHub/ProgHLoek/avans-progh/keyboard/vivado.log
+# Journal file: D:/GitHub/ProgHLoek/avans-progh/keyboard\vivado.jou
+# Running On: Big-Chinese-Export-Toaster, OS: Windows, CPU Frequency: 2592 MHz, CPU Physical cores: 6, Host memory: 17016 MB
+#-----------------------------------------------------------
+start_gui
+open_project D:/GitHub/ProgHLoek/avans-progh/keyboard/keyboard.xpr
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk120_es:part0:1.2 available at D:/VIVADO/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk120/es/1.2/board.xml as part xcvp1202-vsva2785-2mp-e-s-es1 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:vpk120_es_revb:part0:1.0 available at D:/VIVADO/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/vpk120_revb/es/1.0/board.xml as part xcvp1202-vsva2785-2mp-e-s-es1 specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu208ld:part0:2.0 available at D:/VIVADO/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu208ld/production/2.0/board.xml as part xczu58dr-fsvg1517-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu216ld:part0:2.0 available at D:/VIVADO/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu216ld/production/2.0/board.xml as part xczu59dr-ffvf1760-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670:part0:2.0 available at D:/VIVADO/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670/2.0/board.xml as part xczu67dr-fsve1156-2-i specified in board_part file is either invalid or not available
+WARNING: [Board 49-26] cannot add Board Part xilinx.com:zcu670ld:part0:1.0 available at D:/VIVADO/Vivado/2022.1/data/xhub/boards/XilinxBoardStore/boards/Xilinx/zcu670ld/1.0/board.xml as part xczu57dr-fsve1156-2-i specified in board_part file is either invalid or not available
+INFO: [Project 1-313] Project file moved from '/home/loek/docs/repos/progh-huiswerk/keyboard' since last save.
+WARNING: [filemgmt 56-2] Board Part Repository Path: Could not find the directory 'D:/.Xilinx/Vivado/2022.2/xhub/board_store/xilinx_board_store', nor could it be found using path 'D:/home/loek/.Xilinx/Vivado/2022.2/xhub/board_store/xilinx_board_store'.
+INFO: [filemgmt 56-2] Default IP Output Path : Could not find the directory 'D:/GitHub/ProgHLoek/avans-progh/keyboard/keyboard.gen/sources_1', nor could it be found using path 'D:/home/loek/docs/repos/progh-huiswerk/keyboard/keyboard.gen/sources_1'.
+CRITICAL WARNING: [Project 1-505] Unrecognized Option Name SimCompileState
+WARNING: [filemgmt 56-2] IPUserFilesDir: Could not find the directory 'D:/GitHub/ProgHLoek/avans-progh/keyboard/keyboard.ip_user_files', nor could it be found using path 'D:/home/loek/docs/repos/progh-huiswerk/keyboard/keyboard.ip_user_files'.
+Scanning sources...
+Finished scanning sources
+WARNING: [Project 1-231] Project 'keyboard.xpr' was created with a future version and may or may not perform reliably with this version of Vivado. It has been opened in read-only mode for the protection of unrecognized data. Use 'File | Save Project As...' if you wish to alter a copy of the project.
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/VIVADO/Vivado/2022.1/data/ip'.
+open_project: Time (s): cpu = 00:00:14 ; elapsed = 00:00:07 . Memory (MB): peak = 1651.098 ; gain = 0.000
+update_compile_order -fileset sources_1
+save_project_as keyboard1 D:/GitHub/ProgHLoek/avans-progh/keyboard1 -force
+save_project_as: Time (s): cpu = 00:00:15 ; elapsed = 00:00:07 . Memory (MB): peak = 1651.098 ; gain = 0.000
+import_files
+INFO: [filemgmt 20-348] Importing the appropriate files for fileset: 'constrs_1'
+INFO: [filemgmt 20-348] Importing the appropriate files for fileset: 'sources_1'
+synth_design -rtl -rtl_skip_mlo -name rtl_1
+Command: synth_design -rtl -rtl_skip_mlo -name rtl_1
+Starting synth_design
+Using part: xc7a35tcpg236-1
+Top: main
+INFO: [Device 21-403] Loading part xc7a35tcpg236-1
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:07 . Memory (MB): peak = 2205.402 ; gain = 380.094
+---------------------------------------------------------------------------------
+INFO: [Synth 8-638] synthesizing module 'main' [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/main-keyboard.vhd:15]
+INFO: [Synth 8-3491] module 'ps2sync' declared at 'D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/ps2sync.vhd:5' bound to instance 'ps2' of component 'ps2sync' [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/main-keyboard.vhd:55]
+INFO: [Synth 8-638] synthesizing module 'ps2sync' [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/ps2sync.vhd:13]
+INFO: [Synth 8-256] done synthesizing module 'ps2sync' (0#1) [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/ps2sync.vhd:13]
+INFO: [Synth 8-3491] module 'scancodefilter' declared at 'D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/scancodefilter.vhd:5' bound to instance 'filter' of component 'scancodefilter' [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/main-keyboard.vhd:64]
+INFO: [Synth 8-638] synthesizing module 'scancodefilter' [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/scancodefilter.vhd:13]
+INFO: [Synth 8-256] done synthesizing module 'scancodefilter' (0#1) [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/scancodefilter.vhd:13]
+INFO: [Synth 8-3491] module 'dispshift' declared at 'D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/dispshift.vhd:5' bound to instance 'shift_register' of component 'dispshift' [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/main-keyboard.vhd:73]
+INFO: [Synth 8-638] synthesizing module 'dispshift' [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/dispshift.vhd:12]
+INFO: [Synth 8-256] done synthesizing module 'dispshift' (0#1) [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/dispshift.vhd:12]
+INFO: [Synth 8-3491] module 'bcd2disp' declared at 'D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/bcd2disp.vhd:4' bound to instance 'disp' of component 'bcd2disp' [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/main-keyboard.vhd:92]
+INFO: [Synth 8-638] synthesizing module 'bcd2disp' [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/bcd2disp.vhd:13]
+INFO: [Synth 8-3491] module 'bcddec' declared at 'D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/bcddec.vhd:4' bound to instance 'bcddec0' of component 'bcddec' [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/bcd2disp.vhd:36]
+INFO: [Synth 8-638] synthesizing module 'bcddec' [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/bcddec.vhd:9]
+INFO: [Synth 8-256] done synthesizing module 'bcddec' (0#1) [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/bcddec.vhd:9]
+INFO: [Synth 8-3491] module 'bcddec' declared at 'D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/bcddec.vhd:4' bound to instance 'bcddec1' of component 'bcddec' [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/bcd2disp.vhd:40]
+INFO: [Synth 8-3491] module 'bcddec' declared at 'D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/bcddec.vhd:4' bound to instance 'bcddec2' of component 'bcddec' [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/bcd2disp.vhd:44]
+INFO: [Synth 8-3491] module 'bcddec' declared at 'D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/bcddec.vhd:4' bound to instance 'bcddec3' of component 'bcddec' [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/bcd2disp.vhd:48]
+INFO: [Synth 8-3491] module 'dispdrv' declared at 'D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/dispdrv.vhd:6' bound to instance 'drv' of component 'dispdrv' [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/bcd2disp.vhd:53]
+INFO: [Synth 8-638] synthesizing module 'dispdrv' [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/dispdrv.vhd:16]
+INFO: [Synth 8-226] default block is never used [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/dispdrv.vhd:27]
+INFO: [Synth 8-256] done synthesizing module 'dispdrv' (0#1) [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/dispdrv.vhd:16]
+INFO: [Synth 8-256] done synthesizing module 'bcd2disp' (0#1) [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/bcd2disp.vhd:13]
+INFO: [Synth 8-256] done synthesizing module 'main' (0#1) [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/sources_1/imports/keyboard.srcs/main-keyboard.vhd:15]
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 2315.676 ; gain = 490.367
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 2315.676 ; gain = 490.367
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 2315.676 ; gain = 490.367
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 2315.676 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/constrs_1/imports/keyboard.srcs/main.xdc]
+Finished Parsing XDC File [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.srcs/constrs_1/imports/keyboard.srcs/main.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 2365.891 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+RTL Elaboration Complete:  : Time (s): cpu = 00:00:20 ; elapsed = 00:00:15 . Memory (MB): peak = 2439.457 ; gain = 614.148
+27 Infos, 0 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:25 ; elapsed = 00:00:27 . Memory (MB): peak = 2439.457 ; gain = 788.359
+close_design
+exit
+INFO: [Common 17-206] Exiting Vivado at Mon Feb 13 10:24:28 2023...

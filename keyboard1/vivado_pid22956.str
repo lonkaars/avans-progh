@@ -1,0 +1,123 @@
+/*
+
+Xilinx Vivado v2022.1 (64-bit) [Major: 2022, Minor: 1]
+SW Build: 3526262 on Mon Apr 18 15:48:16 MDT 2022
+IP Build: 3524634 on Mon Apr 18 20:55:01 MDT 2022
+
+Process ID (PID): 22956
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Tue Feb 14 17:17:35 CET 2023
+Time zone: 	Central European Standard Time (Europe/Berlin)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 12
+
+Screen size: 1920x1080
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+
+Java version: 	11.0.11 64-bit
+Java home: 	D:/VIVADO/Vivado/2022.1/tps/win64/jre11.0.11_9
+Java executable: 	D:/VIVADO/Vivado/2022.1/tps/win64/jre11.0.11_9/bin/java.exe
+Java arguments: 	[-Dsun.java2d.pmoffscreen=false, -Dhttps.protocols=TLSv1,TLSv1.1,TLSv1.2, -Dsun.java2d.xrender=false, -Dsun.java2d.d3d=false, -Dsun.awt.nopixfmt=true, -Dsun.java2d.dpiaware=true, -Dsun.java2d.uiScale.enabled=false, -Xverify:none, -Dswing.aatext=true, -XX:-UsePerfData, -Djdk.map.althashing.threshold=512, -XX:StringTableSize=4072, --add-opens=java.desktop/com.sun.awt=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.base/java.nio=ALL-UNNAMED, --add-opens=java.desktop/sun.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-opens=java.desktop/javax.swing=ALL-UNNAMED, --add-opens=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-opens=java.desktop/java.awt.event=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.base/java.nio=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.tree=ALL-UNNAMED, --add-exports=java.desktop/javax.swing.plaf.basic=ALL-UNNAMED, --add-exports=java.desktop/sun.swing=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.table=ALL-UNNAMED, --add-exports=java.desktop/sun.swing.plaf.synth=ALL-UNNAMED, --add-exports=java.desktop/sun.awt.shell=ALL-UNNAMED, --add-exports=java.base/sun.security.action=ALL-UNNAMED, --add-exports=java.desktop/sun.font=ALL-UNNAMED, -XX:NewSize=60m, -XX:MaxNewSize=60m, -Xms256m, -Xmx3072m, -Xss5m]
+Java initial memory (-Xms): 	256 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	hmkam
+User home directory: C:/Users/hmkam
+User working directory: D:/GitHub/ProgHLoek/avans-progh/keyboard1
+User country: 	NL
+User language: 	nl
+User locale: 	nl_NL
+
+RDI_BASEROOT: D:/VIVADO/Vivado
+HDI_APPROOT: D:/VIVADO/Vivado/2022.1
+RDI_DATADIR: D:/VIVADO/Vivado/2022.1/data
+RDI_BINDIR: D:/VIVADO/Vivado/2022.1/bin
+
+Vivado preferences file: C:/Users/hmkam/AppData/Roaming/Xilinx/Vivado/2022.1/vivado.xml
+Vivado preferences directory: C:/Users/hmkam/AppData/Roaming/Xilinx/Vivado/2022.1/
+Vivado layouts directory: C:/Users/hmkam/AppData/Roaming/Xilinx/Vivado/2022.1/data/layouts
+PlanAhead jar file: 	D:/VIVADO/Vivado/2022.1/lib/classes/planAhead.jar
+Vivado log file: 	D:/GitHub/ProgHLoek/avans-progh/keyboard1/vivado.log
+Vivado journal file: 	D:/GitHub/ProgHLoek/avans-progh/keyboard1/vivado.jou
+Engine tmp dir: 	D:/GitHub/ProgHLoek/avans-progh/keyboard1/.Xil/Vivado-22956-Big-Chinese-Export-Toaster
+
+Xilinx Environment Variables
+----------------------------
+PICO_SDK_PATH: ..\..\pico-sdk
+XILINX: D:/VIVADO/Vivado/2022.1/ids_lite/ISE
+XILINX_DSP: D:/VIVADO/Vivado/2022.1/ids_lite/ISE
+XILINX_HLS: D:/VIVADO/Vitis_HLS/2022.1
+XILINX_PLANAHEAD: D:/VIVADO/Vivado/2022.1
+XILINX_SDK: D:/VIVADO/Vitis/2022.1
+XILINX_VITIS: D:/VIVADO/Vitis/2022.1
+XILINX_VIVADO: D:/VIVADO/Vivado/2022.1
+XILINX_VIVADO_HLS: D:/VIVADO/Vivado/2022.1
+
+
+GUI allocated memory:	256 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,478 MB
+
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: PROJECT_OPEN_DIALOG
+// [GUI Memory]: 85 MB (+86717kb) [00:00:10]
+// [Engine Memory]: 1,478 MB (+1398802kb) [00:00:10]
+// Opening Vivado Project: D:\GitHub\ProgHLoek\avans-progh\keyboard1\keyboard1.xpr. Version: Vivado v2022.1 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FLOW_ADDED
+// Tcl Message: open_project D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.xpr 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,478 MB. GUI used memory: 59 MB. Current time: 2/14/23, 5:17:36 PM CET
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILESET_TARGET_UCF_CHANGE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: FILESET_TARGET_UCF_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: FILESET_TARGET_UCF_CHANGE
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 107 MB (+18805kb) [00:00:17]
+// WARNING: HEventQueue.dispatchEvent() is taking  3474 ms.
+// Tcl Message: open_project D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.xpr 
+// Tcl Message: INFO: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.gen/sources_1'. 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'D:/VIVADO/Vivado/2022.1/data/ip'. 
+// [GUI Memory]: 116 MB (+3572kb) [00:00:19]
+// Tcl Message: open_project: Time (s): cpu = 00:00:26 ; elapsed = 00:00:09 . Memory (MB): peak = 1664.055 ; gain = 0.000 
+// Project name: keyboard1; location: D:/GitHub/ProgHLoek/avans-progh/keyboard1; part: xc7a35tcpg236-1
+dismissDialog("Open Project"); // bA
+closeMainWindow("keyboard1 - [D:/GitHub/ProgHLoek/avans-progh/keyboard1/keyboard1.xpr] - Vivado 2022.1"); // bb
+// HOptionPane Warning: 'A background task is running. Please wait until it completes to exit Vivado. If you choose to abort background task and exit immediately, you will lose all unsaved changes to project. (Background Task)'
+selectButton("OptionPane.button", "Wait"); // JButton
+// Tcl Message: update_compile_order -fileset sources_1 
